@@ -1,1 +1,24 @@
-<p>estudiantes works!</p>
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombres</th>
+        <th scope="col">Apellidos</th>
+        <th scope="col">Edad</th>
+        <th scope="col">Correo</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let estudiante of list; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td> {{ estudiante.nombres }}</td>
+        <td>{{ estudiante.apellidos }}</td>
+        <td>{{ estudiante.edad }}</td>
+        <td>{{ estudiante.correo }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

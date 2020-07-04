@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Estudiante} from '../core/entities/estudiante';
+import {ApiService} from '../core/data/api.service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-estudiantes',
@@ -6,10 +9,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./estudiantes.component.css']
 })
 export class EstudiantesComponent implements OnInit {
+  list: Array<Estudiante>;
 
-  constructor() { }
+  constructor(private apiService: ApiService, private ngbModal: NgbModal) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    this.list = await this.apiService.estudiantesData.getAll();
   }
 
 }
