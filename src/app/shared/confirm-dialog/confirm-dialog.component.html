@@ -1,0 +1,23 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title">{{title}}</h4>
+    <a class="close" (click)="activeModal.close(false)">×</a>
+  </div>
+
+  <div class="modal-body">
+    <div class="space"></div>
+    <h5 class="">{{description}}</h5>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-sm btn-light" (click)="activeModal.close(false)">
+      <i class="ace-icon fa fa-times"></i>
+      Cancelar
+    </button>
+
+    <button class="btn btn-sm {{level}}" (click)="activeModal.close(true)">
+      <i class="ace-icon fa fa-check"></i>
+      Aceptar
+    </button>
+  </div>
+</div>

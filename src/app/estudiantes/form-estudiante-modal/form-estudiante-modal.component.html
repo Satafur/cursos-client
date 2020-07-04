@@ -1,0 +1,74 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="blue bigger" *ngIf="estudiante?.id">Actualizar Estudiante</h4>
+    <h4 class="blue bigger" *ngIf="!estudiante?.id">Crear Estudiante</h4>
+    <a class="close" (click)="activeModal.dismiss('Canceled')">×</a>
+  </div>
+
+  <div class="modal-body">
+    <form [formGroup]="estudianteForm" class="needs-validation" [(class.was-validated)]="estudianteForm.validated">
+      <div class="row">
+        <div class="col-12 col-sm-6">
+          <div class="row form-group">
+            <label class="control-label col-12 col-sm-12" for="iptestudianteNombres">nombres</label>
+            <div class="col-12 col-sm-12">
+              <input type="email" id="iptestudianteNombres" class="form-control"
+                     formControlName="nombres">
+              <span class="invalid-feedback" *ngIf="estudianteForm.controlInvalid(estudianteForm.controls.nombres)">
+                Debe ingresar un correo
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6">
+          <div class="row form-group">
+            <label class="control-label col-12 col-sm-12" for="iptestudianteApellidos">Apellidos</label>
+            <div class="col-12 col-sm-12">
+              <input type="text" id="iptestudianteApellidos" class="form-control"
+                     formControlName="apellidos"/>
+              <span class="invalid-feedback" *ngIf="estudianteForm.controlInvalid(estudianteForm.controls.apellidos)">
+                Debe ingresar Apellidos
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-4">
+          <div class="row form-group">
+            <label class="control-label col-12 col-sm-12" for="iptestudianteEdad">Edad</label>
+            <div class="col-12 col-sm-12">
+              <input type="number" id="iptestudianteEdad" class="form-control"
+                     formControlName="edad"/>
+              <span class="invalid-feedback" *ngIf="estudianteForm.controlInvalid(estudianteForm.controls.edad)">
+                Debe ingresar Edad
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-8">
+          <div class="row form-group">
+            <label class="control-label col-12 col-sm-12" for="iptestudianteCorreo">Correo</label>
+            <div class="col-12 col-sm-12">
+              <input type="email" id="iptestudianteCorreo" class="form-control"
+                     formControlName="correo">
+              <span class="invalid-feedback" *ngIf="estudianteForm.controlInvalid(estudianteForm.controls.correo)">
+                Debe ingresar un correo
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-sm" data-dismiss="modal" (click)="activeModal.dismiss('Canceled')">
+      <i class="ace-icon fa fa-times"></i>
+      Cancelar
+    </button>
+
+    <button type="submit" class="btn btn-sm btn-primary" (click)="onSubmit()" [disabled]="estudianteForm.invalid">
+      <i class="ace-icon fa fa-check"></i>
+      Aceptar
+    </button>
+  </div>
+</div>

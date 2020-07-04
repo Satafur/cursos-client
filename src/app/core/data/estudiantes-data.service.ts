@@ -25,10 +25,10 @@ export class EstudiantesDataService {
   }
 
   update(element: Estudiante): Promise<Estudiante> {
-    return this.http.put<Estudiante>(`${environment.host}/${this.endpoint}`, element).toPromise();
+    return this.http.put<Estudiante>(`${environment.host}/${this.endpoint}/${element.id}`, element).toPromise();
   }
 
-  remove(element: Estudiante): Promise<Estudiante> {
-    return this.http.delete<Estudiante>(`${environment.host}/${this.endpoint}`).toPromise();
+  remove(elementId: number): Promise<Estudiante> {
+    return this.http.delete<Estudiante>(`${environment.host}/${this.endpoint}/${elementId}`).toPromise();
   }
 }

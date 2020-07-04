@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Estudiante} from '../core/entities/estudiante';
 import {ApiService} from '../core/data/api.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {ConfirmDialogComponent} from '../shared/confirm-dialog/confirm-dialog.component';
+import {FormEstudianteModalComponent} from './form-estudiante-modal/form-estudiante-modal.component';
 
 @Component({
   selector: 'app-estudiantes',
@@ -17,4 +19,58 @@ export class EstudiantesComponent implements OnInit {
     this.list = await this.apiService.estudiantesData.getAll();
   }
 
+  async onCreate(): Promise<void> {
+    try {
+      const element: Estudiante = await this.openFormModal(new Estudiante());
+
+      if (element) {
+        await this.apiService.estudiantesData.create(element);
+        await this.loadData();
+      }
+    } catch (e) {
+    }
+  }
+
+  async onEdit(event: Estudiante): Promise<void> {
+    try {
+      const estudiante = await this.apiService.estudiantesData.getById(event.id);
+      const element: Estudiante = await this.openFormModal(estudiante);
+
+      if (element) {
+        await this.apiService.estudiantesData.update(element);
+        await this.loadData();
+      }
+    } catch (e) {
+    }
+  }
+
+  async onDelete(event: Estudiante): Promise<void> {
+    try {
+      const confirmDialogRef = this.ngbModal.open(ConfirmDialogComponent);
+      confirmDialogRef.componentInstance.title = 'Remover Estudiante';
+      confirmDialogRef.componentInstance.description = '¿Realmente desea eliminar este registro?';
+      confirmDialogRef.componentInstance.level = ConfirmDialogComponent.DANGER_LEVEL;
+
+      if (await confirmDialogRef.result) {
+        await this.apiService.estudiantesData.remove(event.id);
+        await this.loadData();
+      }
+    } catch (e) {
+    }
+  }
+
+  private async openFormModal(element: Estudiante): Promise<Estudiante> {
+    const refModal = this.ngbModal.open(FormEstudianteModalComponent);
+    refModal.componentInstance.estudiante = element;
+
+    return refModal.result;
+  }
+
+  private async loadData(): Promise<void> {
+    try {
+      this.list = await this.apiService.estudiantesData.getAll();
+    } catch (e) {
+
+    }
+  }
 }
