@@ -6,7 +6,7 @@ import {environment} from '../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class EstudiantesService {
+export class EstudiantesDataService {
 
   endpoint = 'estudiantes';
 

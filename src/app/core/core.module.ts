@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {CursosService} from './data/cursos.service';
-import {EstudiantesService} from './data/estudiantes.service';
+import {CursosDataService} from './data/cursos-data.service';
+import {EstudiantesDataService} from './data/estudiantes-data.service';
 import {HttpClientModule} from '@angular/common/http';
+import {ApiService} from './data/api.service';
 
 
 
@@ -13,8 +14,9 @@ import {HttpClientModule} from '@angular/common/http';
     HttpClientModule,
   ],
   providers: [
-    CursosService,
-    EstudiantesService,
+    CursosDataService,
+    EstudiantesDataService,
+    ApiService,
   ]
 })
 export class CoreModule { }
