@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDateNativeAdapter, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -10,6 +10,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
   imports: [
     CommonModule,
     NgbModule
+  ],
+  providers: [
+    NgbDateNativeAdapter
   ],
   exports: [
     ConfirmDialogComponent

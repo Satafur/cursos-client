@@ -1,4 +1,9 @@
 <div class="container-fluid">
+  <div class="row justify-content-start my-3">
+    <div class="col-12 col-md-3">
+      <button class="btn btn-primary w-100" (click)="onCreate()">Crear</button>
+    </div>
+  </div>
   <div class="row justify-content-center">
     <table class="table table-striped">
       <thead>
@@ -8,6 +13,7 @@
         <th scope="col">Horario</th>
         <th scope="col">Fecha Inicio</th>
         <th scope="col">Fecha Fin</th>
+        <th></th>
       </tr>
       </thead>
       <tbody>
@@ -15,8 +21,18 @@
         <th scope="row">{{ i + 1 }}</th>
         <td> {{ curso.nombre }}</td>
         <td>{{ curso.horario }}</td>
-        <td>{{ curso.fechaInicio | date: 'dd/mm/yyyy' }}</td>
-        <td>{{ curso.fechaFin | date: 'dd/mm/yyyy' }}</td>
+        <td>{{ curso.fechaInicio | date: 'dd/MM/yyyy' }}</td>
+        <td>{{ curso.fechaFin | date: 'dd/MM/yyyy' }}</td>
+        <td>
+          <a href="javascript:" class="btn btn-xs btn-outline-info mx-1"
+             (click)="onEdit(curso)" ngbTooltip="Editar curso">
+            <span class="fa fa-pencil-square-o"></span>
+          </a>
+          <a href="javascript:" class="btn btn-xs btn-outline-danger mx-1"
+             (click)="onDelete(curso)" ngbTooltip="Eliminar curso">
+            <span class="fa fa-trash"></span>
+          </a>
+        </td>
       </tr>
       </tbody>
     </table>

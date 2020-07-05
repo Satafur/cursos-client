@@ -1,0 +1,79 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="blue bigger" *ngIf="curso?.id">Actualizar Curso</h4>
+    <h4 class="blue bigger" *ngIf="!curso?.id">Crear Curso</h4>
+    <a class="close" (click)="activeModal.dismiss('Canceled')">×</a>
+  </div>
+
+  <div class="modal-body">
+    <form [formGroup]="cursoForm" class="needs-validation" [(class.was-validated)]="cursoForm.validated">
+      <div class="row">
+        <div class="col-12 col-sm-6">
+          <div class="row form-group">
+            <label class="control-label col-12 col-sm-12" for="iptestudianteNombre">Nombre</label>
+            <div class="col-12 col-sm-12">
+              <input type="text" id="iptestudianteNombre" class="form-control"
+                     formControlName="nombre">
+              <span class="invalid-feedback" *ngIf="cursoForm.controlInvalid(cursoForm.controls.nombre)">
+                Debe ingresar un nombre
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6">
+          <div class="row form-group">
+            <label class="control-label col-12 col-sm-12" for="iptestudianteHorario">Horario</label>
+            <div class="col-12 col-sm-12">
+              <input type="number" id="iptestudianteHorario" class="form-control"
+                     formControlName="horario"/>
+              <span class="invalid-feedback" *ngIf="cursoForm.controlInvalid(cursoForm.controls.horario)">
+                Debe ingresar Horario
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6">
+          <div class="row form-group">
+            <label class="control-label col-12 col-sm-12" for="iptestudianteFechaInicio">Fecha Inicio</label>
+            <div class="col-12 col-sm-12">
+              <div class="input-group">
+                <input type="date" id="iptestudianteFechaInicio" class="form-control"
+                       formControlName="fechaInicio"
+                       ngbDatepicker>
+              </div>
+              <span class="invalid-feedback" *ngIf="cursoForm.controlInvalid(cursoForm.controls.fechaInicio)">
+                Debe ingresar Fecha de inicio
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6">
+          <div class="row form-group">
+            <label class="control-label col-12 col-sm-12" for="iptestudianteFechaFin">Fecha Finalación</label>
+            <div class="col-12 col-sm-12">
+              <div class="input-group">
+                <input type="date" id="iptestudianteFechaFin" class="form-control"
+                       formControlName="fechaFin" ngbDatepicker>
+              </div>
+              <span class="invalid-feedback" *ngIf="cursoForm.controlInvalid(cursoForm.controls.fechaFin)">
+                Debe ingresar una Fecha finalización
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-sm" data-dismiss="modal" (click)="activeModal.dismiss('Canceled')">
+      <i class="ace-icon fa fa-times"></i>
+      Cancelar
+    </button>
+
+    <button type="submit" class="btn btn-sm btn-primary" (click)="onSubmit()" [disabled]="cursoForm.invalid">
+      <i class="ace-icon fa fa-check"></i>
+      Aceptar
+    </button>
+  </div>
+</div>
