@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Curso} from '../entities/curso';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
+import {Estudiante} from '../entities/estudiante';
 
 @Injectable({
   providedIn: 'root'
@@ -35,5 +36,9 @@ export class CursosDataService {
 
   remove(elementId: number): Promise<Curso> {
     return this.http.delete<Curso>(`${environment.host}/${this.endpoint}/${elementId}`).toPromise();
+  }
+
+  assign(elementId: number, estudianteId: number): Promise<Estudiante> {
+    return this.http.put<Estudiante>(`${environment.host}/${this.endpoint}/${elementId}/asignar/${estudianteId}`, {}).toPromise();
   }
 }

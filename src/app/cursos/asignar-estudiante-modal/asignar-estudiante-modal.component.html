@@ -1,0 +1,38 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="blue bigger">Agregar estudiantes al curso {{curso?.nombre}}</h4>
+    <a class="close" (click)="activeModal.dismiss('Canceled')">×</a>
+  </div>
+
+  <div class="modal-body">
+    <div class="row justify-content-center">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombres</th>
+          <th scope="col">Apellidos</th>
+          <th scope="col">Edad</th>
+          <th scope="col">Correo</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let estudiante of estudiantes; index as i">
+          <th scope="row">{{ i + 1 }}</th>
+          <td> {{ estudiante?.nombres }}</td>
+          <td>{{ estudiante?.apellidos }}</td>
+          <td>{{ estudiante?.edad }}</td>
+          <td>{{ estudiante?.correo }}</td>
+          <td>
+            <a href="javascript:" class="btn btn-xs btn-outline-info mx-1"
+               (click)="onAssign(estudiante)" ngbTooltip="Agregar estudiante">
+              <span class="fa fa-plus-square"></span>
+            </a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
