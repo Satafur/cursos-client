@@ -21,6 +21,10 @@ export class CursosDataService {
     return this.http.get<Curso>(`${environment.host}/${this.endpoint}/${elementId}`).toPromise();
   }
 
+  getByEstudianteId(elementId: number): Promise<Curso> {
+    return this.http.get<Curso>(`${environment.host}/${this.endpoint}/estudiante/${elementId}`).toPromise();
+  }
+
   create(element: Curso): Promise<Curso> {
     return this.http.post<Curso>(`${environment.host}/${this.endpoint}`, element).toPromise();
   }

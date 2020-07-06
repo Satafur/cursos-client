@@ -4,6 +4,7 @@ import {ApiService} from '../core/data/api.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ConfirmDialogComponent} from '../shared/confirm-dialog/confirm-dialog.component';
 import {FormEstudianteModalComponent} from './form-estudiante-modal/form-estudiante-modal.component';
+import {CursosEstudianteModalComponent} from './cursos-estudiante-modal/cursos-estudiante-modal.component';
 
 @Component({
   selector: 'app-estudiantes',
@@ -59,9 +60,22 @@ export class EstudiantesComponent implements OnInit {
     }
   }
 
+  async onOpenCursos(event: Estudiante): Promise<void> {
+    try {
+      await this.openCursosModal(event);
+    } catch (e) {
+    }
+  }
   private async openFormModal(element: Estudiante): Promise<Estudiante> {
     const refModal = this.ngbModal.open(FormEstudianteModalComponent);
     refModal.componentInstance.estudiante = element;
+
+    return refModal.result;
+  }
+
+  private async openCursosModal(element: Estudiante): Promise<void> {
+    const refModal = this.ngbModal.open(CursosEstudianteModalComponent);
+    refModal.componentInstance.cursos = await this.apiService.cursosData.getByEstudianteId(element.id);
 
     return refModal.result;
   }

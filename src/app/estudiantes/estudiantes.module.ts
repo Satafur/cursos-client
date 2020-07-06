@@ -6,11 +6,12 @@ import {EstudiantesRoutingModule} from './estudiantes-routing.module';
 import {CoreModule} from '../core/core.module';
 import { FormEstudianteModalComponent } from './form-estudiante-modal/form-estudiante-modal.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { CursosEstudianteModalComponent } from './cursos-estudiante-modal/cursos-estudiante-modal.component';
 
 
 
 @NgModule({
-  declarations: [EstudiantesComponent, FormEstudianteModalComponent],
+  declarations: [EstudiantesComponent, FormEstudianteModalComponent, CursosEstudianteModalComponent],
   imports: [
     CommonModule,
     NgbModule,
